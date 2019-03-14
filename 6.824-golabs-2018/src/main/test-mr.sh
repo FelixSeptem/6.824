@@ -4,7 +4,7 @@ here=$(dirname "$0")
 export GOPATH="$here/../../"
 echo ""
 echo "==> Part I"
-go test -run Sequential mapreduce/...
+go test -run Sequential ../mapreduce/...
 echo ""
 echo "==> Part II"
 (cd "$here" && sh ./test-wc.sh > /dev/null)
