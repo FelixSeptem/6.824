@@ -4,7 +4,6 @@ import "os"
 import "fmt"
 import (
 	"mapreduce"
-	"sort"
 	"strconv"
 	"strings"
 	"unicode"
@@ -30,18 +29,15 @@ func mapF(document string, value string) (res []mapreduce.KeyValue) {
 // should be a single output value for that key.
 func reduceF(key string, values []string) string {
 	// Your code here (Part V).
-	sort.Strings(values)
-
-	last := ""
-	i := 0
+	res := make(map[string]struct{})
+	uValues := make([]string, 0)
 	for _, f := range values {
-		if f != last {
-			last = f
-			values[i] = f
-			i++
+		if _, ok := res[f]; !ok {
+			uValues = append(uValues, f)
+			res[f] = struct{}{}
 		}
 	}
-	values = values[0:i]
+	values = uValues
 
 	return strconv.FormatInt(int64(len(values)), 10) + " " + strings.Join(values, ",")
 }

@@ -67,12 +67,12 @@ func doReduce(
 			if err != nil {
 				break
 			}
-			//kvs[kv.Key] = append(kvs[kv.Key], kv.Value)
-			if _, ok := kvs[kv.Key]; ok {
-				kvs[kv.Key] = append(kvs[kv.Key], kv.Value)
-			} else {
-				kvs[kv.Key] = []string{kv.Value}
-			}
+			kvs[kv.Key] = append(kvs[kv.Key], kv.Value)
+			//if _, ok := kvs[kv.Key]; ok {
+			//	kvs[kv.Key] = append(kvs[kv.Key], kv.Value)
+			//} else {
+			//	kvs[kv.Key] = []string{kv.Value}
+			//}
 		}
 	}
 
